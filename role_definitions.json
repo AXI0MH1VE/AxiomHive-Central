@@ -1,0 +1,38 @@
+{
+  "compliance_id": "OMEGA-7N-RCSM-001",
+  "rbac_version": "1.0.0-invariant",
+  "roles": [
+    {
+      "role_id": "sovereign_operator",
+      "description": "Sovereign operator with authority to execute wealth tactics.",
+      "permissions": [
+        "auth:execute_command",
+        "proxy:status:read",
+        "ledger:read_write",
+        "wealth:execute"
+      ],
+      "iwk_license_required": true
+    },
+    {
+      "role_id": "ailock_administrator",
+      "description": "Full operational control, required for deployment and maintenance.",
+      "permissions": [
+        "auth:execute_command",
+        "proxy:status:read",
+        "ledger:read_write",
+        "config:read_only"
+      ],
+      "iwk_license_required": false
+    },
+    {
+      "role_id": "api_consumer",
+      "description": "Standard service-to-service access.",
+      "permissions": [
+        "proxy:status:read",
+        "ledger:read_only"
+      ],
+      "iwk_license_required": false
+    }
+  ],
+  "policy_enforcement_note": "Authorization is determined by fixed role mappings and requires deterministic JWT validation against the JWKS_ENDPOINT. The 'wealth:execute' permission is only granted if both the role is authorized AND the global IWK_LICENSE_ACTIVE flag is TRUE."
+}

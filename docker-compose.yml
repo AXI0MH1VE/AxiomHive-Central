@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  ailock:
+    build: .
+    image: axiomhive-ailock:latest
+    container_name: ailock
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    restart: unless-stopped
